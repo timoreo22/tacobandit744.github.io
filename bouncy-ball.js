@@ -55,9 +55,9 @@ const onDom = (()=> {
         for(const trailIdx in trailBalls){
             const trail = trailBalls[trailIdx];
             ctx.globalAlpha = easeOut(trailAlpha);
-            ctx.setTransform(0.65, 0, 0, 0.65, trail.x, trail.y);
+            ctx.setTransform(1, 0, 0, 1, trail.x, trail.y);
             ctx.rotate(trail.rot);
-            ctx.drawImage(ballImage, -150, -75);
+            ctx.drawImage(ballImage, -circleRadius, -circleRadius, circleRadius * 2, circleRadius * 2);
             trailAlpha += trailTransparency;
         }
         ctx.globalAlpha = 1.0; //technically not needed
