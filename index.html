@@ -22,11 +22,45 @@
 				height: 70vh;
 				margin-left: 5vw;
 			}
+			.flex-container{
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: space-around;
+			}
+			.slider-field{
+				width: 300px;
+			}
 		</style>
 	</head>
 	<body>
 		<div id="radio" class="container">
 			<div class="col-12" id="listeners"></div>
+		</div>
+		<div class="flex-container">
+			<div class="slider-field">
+				<label>
+					Ball Size
+					<input class="slider-field" id="scale" type="range" min="1" value="50" max="100" step="1"/>
+				</label>
+			</div>
+			<div class="slider-field">
+				<label>
+					Throw speed
+					<input class="slider-field"  id="throwSpeed" type="range" min="0" value="0.05" max="1" step="0.01"/>
+				</label>
+			</div>
+			<div class="slider-field">
+				<label>
+					Air Resistance
+					<input class="slider-field" id="airResistance" type="range" min="0" value="0.0005" max="0.001" step="0.0001"/>
+				</label>
+			</div>
+			<div class="slider-field">
+				<label>
+					Gravity
+					<input class="slider-field"  id="gravity" type="range" min="0" value="0.001" max="0.01" step="0.0001"/>
+				</label>
+			</div>
 		</div>
 			<canvas id="canvas" width="1200" height="600">
 				<p>This website needs Javascript to display the bounciest ball of all</p>

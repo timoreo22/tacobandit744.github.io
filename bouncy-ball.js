@@ -7,16 +7,16 @@ const onDom = (()=> {
     let circlePosY = 75;
 
     // how big the ball is, in pixels
-    const circleRadius = 50.0;
+    let circleRadius = 50.0;
 
     // the bigger the number, the faster the ball goes down naturally
-    const gravity = 0.001;
+    let gravity = 0.001;
     // the bigger the number, the faster you throw
-    const throwSpeed = 0.05;
+    let throwSpeed = 0.05;
     // for some reason touch controls are way more sensitive
-    const touchThrowSpeed = 0.005;
+    let touchThrowSpeed = 0.005;
     // the bigger the number, the faster the ball stops
-    const airResistance = 0.0005;
+    let airResistance = 0.0005;
 
     // simulation resolution, 1/fps * 1000, 8 ~= 120fps
     const speedIndex = 8.0;
@@ -32,6 +32,10 @@ const onDom = (()=> {
 
     const canvas = document.getElementById("canvas");
     const ctx = canvas.getContext("2d");
+    const scaleSlider = document.getElementById("scale");
+    const throwSlider = document.getElementById("throwSpeed");
+    const airResistanceSlider = document.getElementById("airResistance");
+    const gravitySlider = document.getElementById("gravity");
 
     const ballImage = new Image();
 
@@ -79,6 +83,28 @@ const onDom = (()=> {
     }
     function doTick(){
         if (!paused) {
+            const val = Number(scaleSlider.value);
+            if(val !== circleRadius){
+                circleRadius = val;
+                velocityX = 0.15;
+                velocityY = 0.1;
+
+                circlePosX = val + 25;
+                circlePosY = val + 25;
+            }
+            const throws = Number(throwSlider.value);
+            if(throws !== throwSpeed){
+                throwSpeed = throws;
+                touchThrowSpeed = throws / 10;
+            }
+            const resist = Number(airResistanceSlider.value);
+            if(resist !== airResistance){
+                airResistance = resist;
+            }
+            const grav = Number(gravitySlider.value);
+            if(grav !== gravity){
+                gravity = grav;
+            }
             circlePosX += velocityX * speedIndex;
             circlePosY += velocityY * speedIndex;
             // bounce
